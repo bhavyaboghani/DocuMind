@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LLM Q&A Bot</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <!-- Lottie Player CDN -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+  <!-- Particles.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+</head>
+<body>
+
+  <!-- Background Animation -->
+  <div id="particles-js"></div>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+
+      <!-- Lottie Animations Row -->
+      <div class="lottie-row">
+        <lottie-player 
+          src="https://assets1.lottiefiles.com/packages/lf20_49rdyysj.json"  
+          background="transparent"  
+          speed="1"  
+          style="width: 220px; height: 220px;"  
+          loop autoplay>
+        </lottie-player>
+
+        <lottie-player 
+          src="https://assets6.lottiefiles.com/packages/lf20_h4th9ofg.json"  
+          background="transparent"  
+          speed="1"  
+          style="width: 220px; height: 220px;"  
+          loop autoplay>
+        </lottie-player>
+
+        <lottie-player 
+          src="https://assets10.lottiefiles.com/packages/lf20_ygiuluqn.json"  
+          background="transparent"  
+          speed="1"  
+          style="width: 220px; height: 220px;"  
+          loop autoplay>
+        </lottie-player>
+      </div>
+
+      <h1>DocuMind</h1>
+      <h3>Upload. Ask. Understand.</h3>
+      <p>Whether it’s a manual, research paper, notes or internal PDF — get instant, intelligent answers powered by advanced language models. Built for clarity and speed.</p>
+      <a href="#qa-section" class="scroll-btn">↓ Scroll to Try</a>
+    </div>
+  </section>
+
+  <!-- Q&A Section -->
+  <section id="qa-section">
+    <div class="container">
+      <h1>📚 Answers to your Questions here!</h1>
+
+      <!-- Upload Form -->
+      <form method="POST" enctype="multipart/form-data">
+        <label>Upload a Document (txt/pdf):</label><br/>
+        <input type="file" name="file" accept=".txt,.pdf" required>
+        <button type="submit">Upload</button>
+      </form>
+
+      <!-- Success/Error Message -->
+      {% if message %}
+        <p class="message">{{ message }}</p>
+      {% endif %}
+
+      <hr/>
+
+      <!-- Question Form -->
+      <form method="POST">
+        <input type="text" name="question" placeholder="Ask your question..." required>
+        <button type="submit">Ask</button>
+      </form>
+
+      <!-- Answer Display -->
+     {% if answer %}
+<div class="answer">
+  <h3>Answer:</h3>
+<div class="answer">{{ answer | safe }}</div>
+</div>
+{% endif %}
+
+    </div>
+  </section>
+
+  <!-- Particles.js Config -->
+  <script>
+    particlesJS("particles-js", {
+      particles: {
+        number: { value: 60 },
+        size: { value: 3 },
+        color: { value: "#ffffff" },
+        line_linked: { enable: true, color: "#ffffff" },
+        move: { speed: 1 }
+      },
+      interactivity: {
+        events: {
+          onhover: { enable: true, mode: "grab" }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
